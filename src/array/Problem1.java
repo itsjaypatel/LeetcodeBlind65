@@ -1,9 +1,6 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,15 +10,17 @@ public class Problem1 {
 
     public static void main(String[] args) {
 
-        int[] ans = new Problem1().twoSum(new int[]{2, 7, 11, 15}, 9);
+        int[] ans = new Problem1().twoSumApproch1(new int[]{2, 7, 11, 15}, 9);
         System.out.println(Arrays.toString(ans));
     }
 
     static record Pair(int value, int index) {
     }
 
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSumApproch1(int[] nums, int target) {
 
+        //TC - O(nlogn)
+        //SC - O(n)
         int n = nums.length;
         List<Pair> pairs = IntStream
                 .range(0, n)
@@ -42,6 +41,21 @@ public class Problem1 {
             }
         }
 
+        return new int[0];
+    }
+
+    public int[] twoSumApproch2(int[] nums, int target) {
+
+        //TC - O(n) Assuming map contains run in O(1)
+        //SC - O(n)
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[]{map.get(target - nums[i]), i};
+            }
+            map.put(nums[i], i);
+        }
         return new int[0];
     }
 
