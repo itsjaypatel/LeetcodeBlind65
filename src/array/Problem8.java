@@ -2,7 +2,7 @@ package array;
 
 public class Problem8 {
 
-    //    Link: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+    //    Link: https://leetcode.com/problems/search-in-rotated-sorted-array/
 
     public static void main(String[] args) {
 
