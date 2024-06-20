@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Problem1 {
 
+    //Link - https://leetcode.com/problems/insert-interval/description/
     public static void main(String[] args) {
 
         int[][] intervals = new int[][]{{1, 3},{6, 9}};
