@@ -1,38 +1,39 @@
 package linkedlist;
 
-import java.util.HashSet;
-import java.util.Set;
+public class Problem3 {
 
-public class Problem2 {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
-    public boolean hasCycle(ListNode head) {
+        ListNode dummy = new ListNode(0);
 
-        /*
-            Approch - Using Set
-            TC -O(N)
-            SC -O(1)
-            Set<ListNode> set = new HashSet<>();
-            ListNode cur = head;
-            while (cur != null) {
-                if(!set.add(cur)) {
-                    return true;
-                }
+        ListNode temp1 = l1, temp2 = l2, temp3 = dummy;
+        while(temp1 != null && temp2 != null) {
+
+            ListNode temp1Next = temp1.next;
+            ListNode temp2Next = temp2.next;
+
+            temp1.next = null;
+            temp2.next = null;
+
+            int val1 = temp1.val;
+            int val2 = temp2.val;
+
+            if(val1 < val2) {
+                temp3.next = temp1;
+                temp1 = temp1Next;
+            }else{
+                temp3.next = temp2;
+                temp2 = temp2Next;
             }
-            return false;
-         */
-
-        //Approch - Using Fast and slow pointer
-        // TC - O(N)
-        // SC - O(1)
-
-        ListNode slow = head, fast = head;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-            if (slow == fast) {
-                return true;
-            }
+            temp3 = temp3.next;
         }
-        return false;
+
+        if(temp1 != null) {
+            temp3.next = temp1;
+        }
+        if(temp2 != null) {
+            temp3.next = temp2;
+        }
+        return dummy.next;
     }
 }
